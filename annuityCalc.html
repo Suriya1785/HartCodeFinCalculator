@@ -16,7 +16,6 @@
     <script src="scripts/annuityCalc/init.js"></script>
 
     <!-- custom css-->
-    <link rel="stylesheet" href="css/mediaQuery.css" />
     <link rel="stylesheet" href="css/custom.css" />
 
     <title>Annuity Calculator</title>
@@ -63,9 +62,9 @@
         <div class="container">
             <section>
                 <h3 class="text_size_small font-italic font-weight-light">
-                    Important Info - Make payouts at the start of each year (annuity due).
+                    Annuity Calculator - Important Info - Make payouts at the start of each year (annuity due).
                 </h3>
-                <form>
+                <form id="annuityForm" action="annuityCalc.html" method="GET" target="_self">
                     <div class="row">
                         <div class="col-md-4">
                             <label class="col-form-label col-sm-4 d-none d-md-block" for="inputAnnualPayout">AnnualPayout</label>
@@ -91,10 +90,15 @@
                     </div>
                     <br>
                     <div class="row justify-content-center">
+                        <!-- Results are read only fields-->
                         <div class="col-md-4">
                             <label class="col-form-label col-md-4 d-none d-md-inline" for="outputAnnuityDepositAmt">Amount To Deposit</label>
-                            <input type="text" id="outputAnnuityDepositAmt" name="outputAnnuityDepositAmt" class="d-inline mt-2 form-control" placeholder="Deposit Amount">
+                            <input type="text" id="outputAnnuityDepositAmt" name="outputAnnuityDepositAmt" class="d-inline mt-2 form-control" placeholder="Deposit Amount" readonly>
                         </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <p id="errorMsgId"></p>
                     </div>
                 </form>
             </section>
@@ -106,7 +110,8 @@
     <footer class="footer">
         <!-- Start of footer -->
         <!-- links to our parental sites-->
-
+        <small>Note: When entering numbers into the data fields only use numbers and applicable decimal points. Minimum validation exists. Entering valid number followed by commas, dollar sign wil cause unexpected results. </small>
+        <br>
         <div class="row justify-content-center">
             <h4 class="display-5 font-weight-light">Follow us on our Parent Sites <span class="font-italic font-weight-bold">Hartfor Financial Services</span> On social</h4>
         </div>
