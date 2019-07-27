@@ -16,7 +16,6 @@
     <script src="scripts/mortgageCalc/init.js"></script>
 
     <!-- custom css-->
-    <link rel="stylesheet" href="css/mediaQuery.css" />
     <link rel="stylesheet" href="css/custom.css" />
 
     <title>Mortgage Calculator</title>
@@ -63,7 +62,8 @@
         <div class="container">
             <section>
                 <h3 class="text_size_small font-italic font-weight-light">Mortgage calculator - Calculate the loan</h3>
-                <form>
+                <!-- form action is used for reset function-->
+                <form id="mortgageForm" action="mortgageCalc.html" method="GET" target="_self">
                     <div class="row">
                         <div class="col-md-4">
                             <label class="col-form-label col-md-4 d-none d-md-block" for="inputPrincipal">Principal</label>
@@ -93,14 +93,19 @@
                     <br>
 
                     <div class="row justify-content-center">
+                        <!-- Results are read only fields-->
                         <div class="col-md-4">
                             <label class="col-form-label col-md-4 d-none d-md-inline" for="outputMonthlyPayment">Monthly Payment</label>
-                            <input type="text" id="outputMonthlyPayment" name="outputMonthlyPayment" class="d-inline form-control" placeholder="Monthly Payment">
+                            <input type="text" id="outputMonthlyPayment" name="outputMonthlyPayment" class="d-inline form-control" placeholder="Monthly Payment" readonly>
                         </div>
                         <div class="col-md-4">
                             <label class="col-form-label col-md-4 d-none d-md-inline" for="outputTotalCost">Total Cost</label>
-                            <input type="text" id="outputTotalCost" name="outputTotalCost" class="d-inline form-control" placeholder="Total Cost">
+                            <input type="text" id="outputTotalCost" name="outputTotalCost" class="d-inline form-control" placeholder="Total Cost" readonly>
                         </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <p id="errorMsgId"></p>
                     </div>
                 </form>
             </section>
@@ -112,7 +117,7 @@
     <footer class="footer">
         <!-- Start of footer -->
         <!-- links to our parental sites-->
-        <small>Note: When entering numbers into the data fields only use numbers and applicable decimal points. Entering commas, dollar signs, or any other non-numeric characters will cause an error. </small>
+        <small>Note: When entering numbers into the data fields only use numbers and applicable decimal points. Minimum validation exists. Entering valid number followed by commas, dollar sign wil cause unexpected results. </small>
         <br>
         <div class="row justify-content-center">
             <h4 class="display-5 font-weight-light">Follow us on our Parent Sites <span class="font-italic font-weight-bold">Hartfor Financial Services</span> On social</h4>
@@ -133,7 +138,6 @@
                 </li>
             </ul>
         </div>
-
         <!-- End of footer-->
     </footer>
 

@@ -16,7 +16,6 @@
     <script src="scripts/savingsCalc/init.js"></script>
 
     <!-- custom css-->
-    <link rel="stylesheet" href="css/mediaQuery.css" />
     <link rel="stylesheet" href="css/custom.css" />
 
     <title>Savings Calculator</title>
@@ -57,44 +56,59 @@
         </div>
     </header>
 
-    <!-- Content - Vision of the website-->
-
     <main>
+        <!-- start of main-->
         <div class="container">
             <section>
                 <h3 class="text_size_small font-italic font-weight-light">
-                    Important Info - Interest is compounded monthly instead of annually.
+                    Future value Calculator: Important Info - Interest is compounded monthly instead of annually.
                 </h3>
+                <form id="savingFormId" action="savingsCalc.html" method="GET" target="_self">
+                    <!-- form for user input, action and error message-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="col-form-label col-sm-4 d-none d-md-block" for="inputDepositAmt">Deposit</label>
+                            <input type="text" id="inputDepositAmt" name="inputDepositAmt" class="form-control border-5" placeholder="Enter Deposit Amount" required autofocus>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-form-label col-sm-4 d-none d-md-block" for="inputInterestRate">Interest</label>
+                            <input type="text" id="inputInterestRate" name="inputInterestRate" class="form-control" placeholder="Enter Interest Rate" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-form-label col-sm-4 d-none d-md-block" for="inputNoOfYr">Years</label>
+                            <input type="text" id="inputNoOfYr" name="inputNoOfYr" class="form-control" placeholder="No of years" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row justify-content-center">
+                        <div class="mt-3 col-md-3">
+                            <button id="calcSavingsBtn" class="btn btn-sm btn-block btn-primary btn-info" type="button">Calculate</button>
+                        </div>
+                        <div class="mt-3 col-md-3">
+                            <button id="resetBtn" class="btn btn-sm btn-block btn-primary btn-info" type="reset">Reset</button>
+                        </div>
+                    </div>
+                    <br>
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <label class="col-form-label col-sm-4 d-none d-md-block" for="inputDepositAmt">Deposit_Amount</label>
-                        <input type="text" id="inputDepositAmt" name="inputDepositAmt" class="form-control border-5" placeholder="Enter Principal amt" required autofocus>
+                    <div class="row justify-content-center">
+                        <!-- Results are read only fields-->
+                        <div class="col-md-4">
+                            <label class="col-form-label col-md-4 d-none d-md-inline" for="outputMaturityAmt">Maturity Amount:</label>
+                            <input type="text" id="outputMaturityAmt" name="outputMaturityAmt" class="d-inline mt-2 form-control" placeholder="Maturity Amt" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-form-label col-md-4 d-none d-md-inline" for="outputTotalInterestEarned">Interest Earned</label>
+                            <input type="text" id="outputTotalInterestEarned" name="outputTotalInterestEarned" class="d-inline mt-2 form-control" placeholder="Interest Earned" readonly>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label class="col-form-label col-sm-4 d-none d-md-block" for="inputInterestRate">Interest_Rate:</label>
-                        <input type="text" id="inputInterestRate" name="inputInterestRate" class="form-control" placeholder="Enter Interest Rate" required>
+                    <br>
+                    <div class="row">
+                        <p id="errorMsgId"></p>
                     </div>
-                    <div class="col-md-4">
-                        <label class="col-form-label col-sm-4 d-none d-md-block" for="inputNoOfYr">No_Of_Yrs:</label>
-                        <input type="text" id="inputNoOfYr" name="inputNoOfYr" class="form-control" placeholder="No of years" required>
-                    </div>
-                    <div class="row justify-content-center offset-md-4 mt-3 col-md-4">
-                        <button id="calcSavingsBtn" class="btn btn-sm btn-block btn-primary btn-info" type="button">Calculate</button>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <label class="col-form-label col-md-4 d-none d-md-inline" for="outputMaturityAmt">Maturity Amount:</label>
-                        <input type="text" id="outputMaturityAmt" name="outputMaturityAmt" class="d-inline mt-2 form-control">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="col-form-label col-md-4 d-none d-md-inline" for="outputTotalInterestEarned">Interest Earned</label>
-                        <input type="text" id="outputTotalInterestEarned" name="outputTotalInterestEarned" class="d-inline mt-2 form-control">
-                    </div>
-                </div>
+                </form>
             </section>
         </div>
+        <!-- End of main-->
     </main>
 
     <hr />
@@ -103,7 +117,7 @@
         <!-- Start of footer -->
         <!-- links to social websites about Financial calculator-->
         <div class="contianer">
-            <small>Note: When entering numbers into the data fields only use numbers and applicable decimal points. Entering commas, dollar signs, or any other non-numeric characters will cause an error. </small>
+            <small>Note: When entering numbers into the data fields only use numbers and applicable decimal points. Minimum validation exists. Entering valid number followed by commas, dollar sign wil cause unexpected results. </small>
             <br>
             <div class="row justify-content-center">
                 <h4 class="display-5 font-weight-light lp-2">Follow us on our Parent Sites <span class="font-italic font-weight-bold">Hartfor Financial Services</span> On social</h4>
