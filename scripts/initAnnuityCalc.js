@@ -1,8 +1,11 @@
-//Description: window onload Init script to assign function on button for future annuity payout calculator
-//Author: HartCode Programmer
-//Date:07/26/2019
-
-//window onload function
+/*Description: window onload Init script to assign function on button for future annuity payout calculator
+ *Author: HartCode Programmer
+ *Date:07/26/2019 
+ *Date:07/29/2019 - Added comments as per standard
+ */
+/* This function is called during window onload of the annuity page and 
+ * assign function to the button
+ */
 var inputPrincipalField, inputInterestRateField, inputNoOfYrLoanField, errorMsgIdField;
 window.onload = function() {
     inputAnnualPayoutField = document.getElementById("inputAnnualPayout");
@@ -13,7 +16,10 @@ window.onload = function() {
     calcAnnuityBtnField.onclick = calcAnnuity;
 }
 
-// Annuity calculation function
+/* This function calculates the annuity deposit amount for the given annual payout
+ * Called by : window.onload
+ * Calls to  : checkNumeric
+ */
 function calcAnnuity() {
 
     // Assign/convert read string for calculation
@@ -32,7 +38,7 @@ function calcAnnuity() {
 
         // calculation of deposit to fund the annuity
         annuityDepositAmt = annualPayout * (Math.pow(1 + interestRate, noOfYrDeposit) - 1) / (Math.pow(1 + interestRate, noOfYrDeposit - 1) * interestRate);
-        document.getElementById("outputAnnuityDepositAmt").value = "$ " + annuityDepositAmt.toFixed(2);
+        document.getElementById("outputAnnuityDepositAmt").value = "$ " + annuityDepositAmt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
         // success message
         if (isNaN(annuityDepositAmt)) {
@@ -50,17 +56,22 @@ function calcAnnuity() {
 
 }
 
-// validate numeric or not
+/* This function is to validate non numeric character at the starting of the field and set error flag
+ * populate error message field
+ * @param (number) - user entered annual payout amount
+ * @param (number) - user entered annual interest rate
+ * @param (number) - user entered loan length
+ */
 function checkNumeric(annualPayout, interest, year) {
     let errorMsg, isError = false;
     // set Error flag based on number validation
-    if (isNaN(annualPayout)) {
+    if ((isNaN(annualPayout)) || (annualPayout <= 0)) {
         errorMsg = "Enter valid number in AnnualPayout field";
         isError = true;
-    } else if (isNaN(interest)) {
+    } else if ((isNaN(interest)) || (interest <= 0)) {
         errorMsg = "Enter valid number in Interest field";
         isError = true;
-    } else if (isNaN(year)) {
+    } else if ((isNaN(year)) || (year <= 0)) {
         errorMsg = "Enter valid number in Years field";
         isError = true;
     } else {
