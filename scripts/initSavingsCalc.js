@@ -1,7 +1,12 @@
-//Description: window onload Init script to assign function on button for Future Value/Savings calculator
-//Author: HartCode Programmer
-//Date:07/26/2019
-//window onload function
+/*Description: window onload Init script to assign function on button for Future Value/Savings calculator
+ *Author: HartCode Programmer
+ *Date:07/26/2019
+ *Date:07/29/2019 - Added comments as per standard
+ */
+
+/* This function is called during window onload of the savings calculator page and 
+ * assign function to the button
+ */
 var inputPrincipalField, inputInterestRateField, inputNoOfYrLoanField, errorMsgIdField;
 window.onload = function() {
     inputDepositAmtField = document.getElementById("inputDepositAmt");
@@ -12,7 +17,10 @@ window.onload = function() {
     calcSavingsBtnField.onclick = calcSavings;
 }
 
-// Calculate future value/saving function
+/* This function calculates the maturity/future value amount for the given deposit amount 
+ * Calls to: checkNumeric function 
+ * Called by: window.onload
+ */
 function calcSavings() {
 
     // Assign/convert read string for calculation
@@ -32,12 +40,12 @@ function calcSavings() {
         // calculation of maturity/future value - Interest was compounded monthly instead of annually
         maturityAmt = (depositAmt * Math.pow((1 + interestRatePerMonth), noOfMonth));
         // format currency and shove it to html
-        document.getElementById("outputMaturityAmt").value = "$ " + maturityAmt.toFixed(2);
+        document.getElementById("outputMaturityAmt").value = "$ " + maturityAmt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
         // Calculation of Total interest earned
         let interestEarned;
         interestEarned = maturityAmt - depositAmt;
-        document.getElementById("outputTotalInterestEarned").value = "$ " + interestEarned.toFixed(2);
+        document.getElementById("outputTotalInterestEarned").value = "$ " + interestEarned.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
         // success message
         if (isNaN(maturityAmt) && (isNaN(interestEarned))) {
@@ -56,17 +64,22 @@ function calcSavings() {
 
 }
 
-// validate numeric or not
+/* This function is to validate non numeric character at the starting of the field and set error flag
+ * populate error message field
+ * @param (number) - user entered deposit amount
+ * @param (number) - user entered annual interest rate
+ * @param (number) - user entered loan length
+ */
 function checkNumeric(depositAmt, interest, year) {
     let errorMsg, isError = false;
     // set Error flag based on number validation
-    if (isNaN(depositAmt)) {
+    if ((isNaN(depositAmt)) || (depositAmt <= 0)) {
         errorMsg = "Enter valid number in Deposit field";
         isError = true;
-    } else if (isNaN(interest)) {
+    } else if ((isNaN(interest)) || (interest <= 0)) {
         errorMsg = "Enter valid number in Interest field";
         isError = true;
-    } else if (isNaN(year)) {
+    } else if ((isNaN(year)) || (year <= 0)) {
         errorMsg = "Enter valid number in Years field";
         isError = true;
     } else {
